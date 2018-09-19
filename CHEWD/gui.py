@@ -592,8 +592,9 @@ class CHEWDDialog(ModelessDialog):
     def Apply(self):
         global load,prevz
         if(load==0):
-            self.changestate()                
+                          
             if(self.wat.get()==1 or self.lig.get()==1):
+                self.changestate()  
                 self.base=os.listdir(self.entry1.get())
                 pdb1=list()
                 for a in self.base:
@@ -643,13 +644,14 @@ class CHEWDDialog(ModelessDialog):
             load=1
             
         else:
-            self.changestate()
+            
             if(self.wat.get()==1):
-                                
+                self.changestate()                
                 CHEWD.clear(tempfile.gettempdir())
                 CHEWD.loadresults(tempfile.gettempdir())
                 CHEWD.wsupdateview(self.entry4.get(),self.entry5.get(),self.entry6.get(),self.entry7.get(),prevz,str(self.scale.get()),self.vl.get())
             elif(self.lig.get()==1):
+                self.changestate()
                 if(self.l1v.get()==1):
                     vl = self.entry4.get()
                     hl = self.swapentry.get()
