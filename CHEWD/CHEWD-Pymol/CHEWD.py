@@ -18,6 +18,10 @@ import tkFileDialog
 import subprocess
 import tempfile
 from time import time, localtime, strftime
+import platform
+
+
+
 load=0
 prev="1"
 prevz="5.0"
@@ -201,14 +205,24 @@ class CHEWD(Frame):
         self.b3 = Button(frame2, text="Energy Value",state=DISABLED,command=lambda: self.sortdata(2))
         self.b3.grid(row=0,column=2,sticky=W+E)
         
-               
-       
-        self.lb1.bind("<<ListboxSelect>>", self.OnSelect)
-        self.lb1.bind("<MouseWheel>", self.OnMouseWheel)
-        self.lb2.bind("<<ListboxSelect>>", self.OnSelect)
-        self.lb2.bind("<MouseWheel>", self.OnMouseWheel)
-        self.lb3.bind("<<ListboxSelect>>", self.OnSelect)
-        self.lb3.bind("<MouseWheel>", self.OnMouseWheel)
+        OS = platform.system()       
+        if(OS== "Linux"):
+            self.lb1.bind("<<ListboxSelect>>", self.OnSelect)
+            self.lb1.bind("<4>", self.OnMouseWheel)
+            self.lb1.bind("<5>", self.OnMouseWheel)
+            self.lb2.bind("<<ListboxSelect>>", self.OnSelect)
+            self.lb2.bind("<4>", self.OnMouseWheel)
+            self.lb2.bind("<5>", self.OnMouseWheel)
+            self.lb3.bind("<<ListboxSelect>>", self.OnSelect)
+            self.lb3.bind("<4>", self.OnMouseWheel)
+            self.lb3.bind("<5>", self.OnMouseWheel)
+        else:
+            self.lb1.bind("<<ListboxSelect>>", self.OnSelect)
+            self.lb1.bind("<MouseWheel>", self.OnMouseWheel)
+            self.lb2.bind("<<ListboxSelect>>", self.OnSelect)
+            self.lb2.bind("<MouseWheel>", self.OnMouseWheel)
+            self.lb3.bind("<<ListboxSelect>>", self.OnSelect)
+            self.lb3.bind("<MouseWheel>", self.OnMouseWheel)
         
         frame3 = Frame(self.parent)
         frame3.grid(row=3, column=0,sticky="nsew")
@@ -729,12 +743,13 @@ class CHEWD(Frame):
         global prev
         sender = val.widget
         idx = sender.curselection()
-        dis = self.lb1.get(idx)
-        if(self.wat.get()==1 or self.lig.get()==1):
-            self.wslistdisplay(prev,dis,int(self.scale.get()))
-        elif(self.mm.get()==1):
-            self.wslistdisplay(prev,dis,0)
-        prev=dis
+        if(idx!=()):
+            dis = self.lb1.get(idx)
+            if(self.wat.get()==1 or self.lig.get()==1):
+                self.wslistdisplay(prev,dis,int(self.scale.get()))
+            elif(self.mm.get()==1):
+                self.wslistdisplay(prev,dis,0)
+            prev=dis
     
     def sortdata(self,sc):
         global dr1,dr2,dr3
