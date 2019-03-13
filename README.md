@@ -1,5 +1,5 @@
 # CHEWD
-Code for residue wise distribution of binding energy
+Code for visualizing residue wise distribution of binding energy
 
 For Installing the plugin in chimera follow these instructions
 
