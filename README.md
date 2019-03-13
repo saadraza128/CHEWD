@@ -3,12 +3,10 @@ Code for residue wise distribution of binding energy
 
 For Installing the plugin in chimera follow these instructions
 
-Open the IDLE menu from Tools -> General Controls -> IDLE
-type the following commands
+Download the folder Chimera-CHEWD 
 
-import os; print os.environ['CHIMERA']
+Open Chimera, go to favorites tab > Preferences. Change category to Tools. Click Add, then browse and select Chimera-CHEWD. Click save  
 
-This will display your CHIMERA home directory. Copy the "CHEWD" folder to CHIMERA-home-directory/share
 
 
 For Installing the plugin in pymol follow these instructions
